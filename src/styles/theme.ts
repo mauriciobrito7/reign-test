@@ -1,3 +1,5 @@
+import { device } from './utils'
+
 export const colors = {
   white: "#ffffff",
   background: '#fcfcfc',
@@ -58,8 +60,18 @@ export const fontConfig = {
 };
 
 export const breakpoints = {
-  mobile: "375px",
+  mobile: "359px",
   tablet: "768px",
   desktop: "1200px",
   large: "1400px",
 };
+
+export const layout = {
+  maxWidth: breakpoints.desktop,
+  margin: '0 1em',
+  responsive: {
+    desktop: device.desktop`
+    margin: 0 auto;
+    `,
+  }
+}

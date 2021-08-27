@@ -1,16 +1,13 @@
 import styled from "styled-components/macro";
-import { breakpoints } from "../../styles/theme";
-import { device } from '../../styles/utils'
+import { layout } from "../../styles/theme";
 
 export const Container = styled.div`
-  max-width: ${breakpoints.desktop};
-  ${device.desktop`
-    margin-right: auto;
-    margin-left: auto; 
-  `}
+  width: 100%; 
 `;
 
 export const MainContent = styled.main`
-  width: 100%;
-  border: 1px dashed red;
+  max-width: ${layout.maxWidth};
+  margin: ${layout.margin};
+  ${layout.responsive.desktop}
+  border:1px dashed red;
 `;
