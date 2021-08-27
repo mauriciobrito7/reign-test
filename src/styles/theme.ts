@@ -50,6 +50,12 @@ export const fontConfig = {
       fontSize: '11px',
       lineHeight: '13px',
     },
+    nav: {
+      fontStyle: 'normal',
+      fontWeight: 500,
+      fontSize: '16px',
+      lineHeight: '19px',
+    },
     button: {
       fontStyle: 'normal',
       fontWeight: 400,
