@@ -26,12 +26,6 @@ export const fontConfig = {
       fontSize: '14px',
       lineHeight: '14px',
     },
-    caption: {
-      fontStyle: 'normal',
-      fontWeight: 500,
-      fontSize: '14px',
-      lineHeight: '12px',
-    },
     h1: {
       fontStyle: 'normal',
       fontWeight: 400,
@@ -45,6 +39,12 @@ export const fontConfig = {
       lineHeight: '28px',
     },
     h3: {
+      fontStyle: 'normal',
+      fontWeight: 500,
+      fontSize: '14px',
+      lineHeight: '17px',
+    },
+    caption: {
       fontStyle: 'normal',
       fontWeight: 400,
       fontSize: '11px',

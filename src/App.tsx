@@ -11,9 +11,9 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <Suspense fallback="Loading...">
-        <Router>
-          <Layout>
+      <Router>
+        <Layout>
+          <Suspense fallback="Loading...">
             <Switch>
               <Route exact path={PUBLIC_URL.home}>
                 <Home />
@@ -22,9 +22,9 @@ function App() {
                 <Favs />
               </Route>
             </Switch>
-          </Layout>
-        </Router>
-      </Suspense>
+          </Suspense>
+        </Layout>
+      </Router>
     </>
   );
 }

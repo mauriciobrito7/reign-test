@@ -9,5 +9,4 @@ export const MainContent = styled.main`
   max-width: ${layout.maxWidth};
   margin: ${layout.margin};
   ${layout.responsive.desktop}
-  border:1px dashed red;
 `;

@@ -1,7 +1,9 @@
+import Article from "../../components/Article";
+
 function Home() {
   return (
     <div>
-      <h1>I'm in home</h1>
+      <Article />
     </div>
   );
 }
