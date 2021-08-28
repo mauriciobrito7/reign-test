@@ -1,16 +1,21 @@
 import { NavContainer, NavList, NavItem } from "./Nav.styles";
 import { Link } from "react-router-dom";
 import { PUBLIC_URL } from "../../constants/";
+import { useLocation } from "react-router-dom";
 
 function Nav() {
+  const location = useLocation();
+  const { pathname } = location;
+  console.log(location);
+
   return (
     <NavContainer>
       <NavList>
         <Link to={PUBLIC_URL.home}>
-          <NavItem>All</NavItem>
+          <NavItem active={pathname === PUBLIC_URL.home}>All</NavItem>
         </Link>
         <Link to={PUBLIC_URL.favs}>
-          <NavItem>My Faves</NavItem>
+          <NavItem active={pathname === PUBLIC_URL.favs}>My Faves</NavItem>
         </Link>
       </NavList>
     </NavContainer>
