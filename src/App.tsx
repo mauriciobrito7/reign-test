@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import GlobalStyles from "./styles/GlobalStyles";
 import Layout from "./components/Layout";
+import ScrollToTop from "./components/ScrollToTop";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PUBLIC_URL } from "./constants";
 
@@ -12,6 +13,7 @@ function App() {
     <>
       <GlobalStyles />
       <Router>
+        <ScrollToTop />
         <Layout>
           <Suspense fallback="Loading...">
             <Switch>

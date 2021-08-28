@@ -1,5 +1,10 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import { colors, fontConfig } from '../../styles/theme'
+
+const activeStyle = {
+  border: `1px solid ${colors.primary}`,
+  color: `${colors.primary}`,
+}
 
 export const NavContainer = styled.nav`
   max-width:30%;
@@ -26,10 +31,15 @@ export const NavItem = styled.li`
   align-items: center;
   cursor: pointer;
   transition: all .3s ease-out;
- 
+ ${(props: AppComponents.NavItemProps) => props.active &&
+    css`
+      ${activeStyle}
+    `}
+  
   &:hover {
-    border: 1px solid ${colors.primary};
-    color: ${colors.primary};
+    ${css`
+      ${activeStyle}
+    `}
   }
   
   &::first-of-type{
