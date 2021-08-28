@@ -1,8 +1,6 @@
 import styled from "styled-components/macro";
 import { colors } from '../../styles/theme';
-import { addOpacityToColor } from '../../styles/utils';
 import { ReactComponent as Time } from "../../assets/img/time.svg";
-
 
 const WIDTH_REACTION_SECTION = '68px'
 
@@ -18,12 +16,14 @@ export const ArticleContainer = styled.article`
     opacity: 40%;
   }
   `
+
 export const ArticleContent = styled.div`
   padding: 1em 1.25em;
   width: calc(100% - ${WIDTH_REACTION_SECTION});
   display: flex;
   align-items: center;
 `
+
 export const ArticleInfo = styled.div`
   width: 100%;
 `
@@ -46,5 +46,6 @@ export const ArticleReaction = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${addOpacityToColor(colors.blackParagraph, 0.1)};
+  background: #F5F5F5;
+  border-radius: 0px 6px 6px 0px;
 `
