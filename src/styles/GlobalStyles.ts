@@ -29,14 +29,17 @@ const GlobalStyles = createGlobalStyle`
     font-size: ${fontConfig.fontSize.h1};
   }
   h2 {
-    font-size: ${fontConfig.fontSize.h2}
+    font-size: ${fontConfig.fontSize.h2};
+  }
+  h3 {
+    font-size: ${fontConfig.fontSize.h3};
+  }
+  h4 {
+    font-size: ${fontConfig.fontSize.caption}
   }
   button {
     font-size: ${fontConfig.fontSize.button};
    
-  }
-  p {
-    font-size: ${fontConfig.fontSize.caption}
   }
 `;
 
