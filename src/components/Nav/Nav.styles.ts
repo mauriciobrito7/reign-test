@@ -8,7 +8,7 @@ const activeStyle = {
 
 export const NavContainer = styled.nav`
   max-width:30%;
-  margin: 70px auto;
+  margin: 63px auto;
   `
 
 export const NavList = styled.ul`
