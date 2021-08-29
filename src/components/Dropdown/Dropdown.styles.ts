@@ -59,11 +59,13 @@ export const DropdownItem = styled.li`
   padding-left:1em;
   cursor: pointer;
 
-  & img {
-    margin-right: 1em;
-  }
-
   &:hover{
     background: ${addOpacityToColor(colors.hoverItem, 0.2)};
   }
+`
+export const DropdownImgWrapper = styled.div`
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  margin-right: 1em;
 `
