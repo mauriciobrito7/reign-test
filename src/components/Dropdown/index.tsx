@@ -6,36 +6,80 @@ import {
   DropdownIcon,
   DropdownList,
   DropdownItem,
+  DropdownImgWrapper,
 } from "./Dropdown.styles";
 import angularIcon from "../../assets/img/angular-icon.png";
 import reactIcon from "../../assets/img/react-icon.png";
 import vueIcon from "../../assets/img/vue-icon.png";
+import allTechnologiesIcon from "../../assets/img/all-technologies.png";
 
-function Dropdown() {
-  const [optionSelected, setOptionSelected] = useState(null);
-  const [openDropdonwList, setOpenDropdonwList] = useState(false);
+const FILTER_OPTIONS: Array<AppComponents.FilterOption> = [
+  {
+    name: "Angular",
+    icon: angularIcon,
+  },
+  {
+    name: "React.js",
+    icon: reactIcon,
+  },
+  {
+    name: "Vue.js",
+    icon: vueIcon,
+  },
+];
 
-  const handleOnClick = () => {
-    setOpenDropdonwList(!openDropdonwList);
+const defaultOp: AppComponents.FilterOption = {
+  name: "All",
+  icon: allTechnologiesIcon,
+};
+
+function Dropdown({
+  titleOnDropdown = "Select your news",
+  defaultOption = defaultOp,
+}: AppComponents.DropdownProps) {
+  const [optionSelected, setOptionSelected] = useState<string | null>(null);
+  const [openDropdownList, setOpenDropdownList] = useState(false);
+
+  const handleOpenDropdown = () => {
+    setOpenDropdownList(!openDropdownList);
+  };
+
+  const closeDropdown = () => {
+    setOpenDropdownList(false);
+  };
+
+  const handleSelectOption = (option: string | null) => {
+    setOptionSelected(option);
+    closeDropdown();
   };
 
   return (
     <DropdownContainer>
-      <DropdownSelector>{"Select your news"}</DropdownSelector>
+      <DropdownSelector>{optionSelected || titleOnDropdown}</DropdownSelector>
       <DropdownIconWrapper>
-        <DropdownIcon onClick={handleOnClick} />
+        <DropdownIcon onClick={handleOpenDropdown} />
       </DropdownIconWrapper>
-      {openDropdonwList && (
+      {openDropdownList && (
         <DropdownList>
-          <DropdownItem>
-            <img src={angularIcon} /> Angular
-          </DropdownItem>
-          <DropdownItem>
-            <img src={reactIcon} /> React.js
-          </DropdownItem>
-          <DropdownItem>
-            <img src={vueIcon} /> Vue.js
-          </DropdownItem>
+          {optionSelected && (
+            <DropdownItem onClick={() => handleSelectOption(null)}>
+              <DropdownImgWrapper>
+                <img src={defaultOption.icon} />
+              </DropdownImgWrapper>
+              {defaultOption.name}
+            </DropdownItem>
+          )}
+          {FILTER_OPTIONS.map((option: AppComponents.FilterOption) => (
+            <DropdownItem
+              onClick={() => handleSelectOption(option.name)}
+              key={option.name}
+            >
+              <DropdownImgWrapper>
+                <img src={option.icon} />
+              </DropdownImgWrapper>
+              {option.name}
+            </DropdownItem>
+          ))}
         </DropdownList>
       )}
     </DropdownContainer>
