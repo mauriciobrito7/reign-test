@@ -17,7 +17,7 @@ export default function useArticles(filter: string) {
     setIsLoading(true);
     getArticles();
     setIsLoading(false);
-  }, [filter]);
+  }, [filter, getArticles]);
 
   return [articles, isLoading];
 };
