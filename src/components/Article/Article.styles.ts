@@ -1,20 +1,30 @@
 import styled from "styled-components/macro";
 import { colors } from '../../styles/theme';
 import { ReactComponent as Time } from "../../assets/img/time.svg";
+import { device } from '../../styles/utils';
 
 const WIDTH_REACTION_SECTION = '68px'
 
 export const ArticleContainer = styled.article`
   border:1px solid ${colors.border};
   border-radius: 6px;
-  width: 50%;
+  width: 100%;
+  margin-bottom: 1em;
   min-height: 90px;
   display: flex;
   cursor: pointer;
   transition: opacity .3s ease;
+  a{
+    color:${colors.blackParagraph};
+    width: 100%;
+    height: 100%;
+  }
   &:hover {
     opacity: 40%;
   }
+  ${device.tablet`
+    width: calc(50% - 20px);
+  `}
   `
 
 export const ArticleContent = styled.div`

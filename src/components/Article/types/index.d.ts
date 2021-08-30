@@ -1,7 +1,11 @@
 declare namespace AppComponents {
-  interface Article {
+  interface ArticleProps {
     author: string;
-    date: Date;
-    description: string;
+    title: string;
+    url: string;
+    date: string;
+    id: string;
+    liked: boolean;
+    setLiked: (article: any) => void
   }
 }

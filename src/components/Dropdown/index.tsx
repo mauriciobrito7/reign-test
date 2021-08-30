@@ -36,6 +36,7 @@ const defaultOp: AppComponents.FilterOption = {
 function Dropdown({
   titleOnDropdown = "Select your news",
   defaultOption = defaultOp,
+  options,
 }: AppComponents.DropdownProps) {
   const [optionSelected, setOptionSelected] = useState<string | null>(null);
   const [openDropdownList, setOpenDropdownList] = useState(false);
