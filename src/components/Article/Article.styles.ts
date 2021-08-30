@@ -1,13 +1,15 @@
 import styled from "styled-components/macro";
 import { colors } from '../../styles/theme';
 import { ReactComponent as Time } from "../../assets/img/time.svg";
+import { device } from '../../styles/utils';
 
 const WIDTH_REACTION_SECTION = '68px'
 
 export const ArticleContainer = styled.article`
   border:1px solid ${colors.border};
   border-radius: 6px;
-  width: 50%;
+  width: 100%;
+  margin-bottom: 1em;
   min-height: 90px;
   display: flex;
   cursor: pointer;
@@ -15,6 +17,9 @@ export const ArticleContainer = styled.article`
   &:hover {
     opacity: 40%;
   }
+  ${device.tablet`
+    width: calc(50% - 20px);
+  `}
   `
 
 export const ArticleContent = styled.div`
@@ -22,6 +27,10 @@ export const ArticleContent = styled.div`
   width: calc(100% - ${WIDTH_REACTION_SECTION});
   display: flex;
   align-items: center;
+
+  a{
+    color:${colors.blackParagraph}
+  }
 `
 
 export const ArticleInfo = styled.div`
