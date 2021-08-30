@@ -21,7 +21,7 @@ function Article({
 }: AppComponents.ArticleProps) {
   return (
     <ArticleContainer>
-      <a target="_blank" href={url}>
+      <a target="_blank" rel="noreferrer" href={url}>
         <ArticleContent>
           <ArticleInfo>
             <ArticleCaption>

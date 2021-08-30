@@ -5,8 +5,11 @@ import { ArticleProps } from "../../types/article";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { FAV_ARTICLES } from "../../constants/";
 
-function Articles({ renderOnlyFavs }: AppComponents.ArticlesProps) {
-  const [articles, isLoading] = useArticles();
+function Articles({
+  renderOnlyFavs,
+  filter = "",
+}: AppComponents.ArticlesProps) {
+  const [articles, isLoading] = useArticles(filter);
   const [valuesInLocalStorage, setValuesInLocalStorage] = useLocalStorage(
     FAV_ARTICLES,
     []

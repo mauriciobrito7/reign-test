@@ -1,12 +1,11 @@
 declare namespace AppComponents {
-  interface FilterOption {
-    name: string;
-    icon: string;
-  }
 
+  type Option = string;
   interface DropdownProps {
-    defaultOption?: FilterOption;
-    titleOnDropdown?: string;
-    options?: Array<FilterOption>
+    defaultOption: FilterOption;
+    titleOnDropdown: string;
+    options: Array<FilterOption>;
+    setOption: (option: Option) => void;
+    optionSelected: Option;
   }
 }
