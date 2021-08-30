@@ -15,13 +15,29 @@ function Dropdown({
   options,
   setOption,
   optionSelected,
+  saveInLocalStorage,
 }: AppComponents.DropdownProps) {
   const [openDropdownList, setOpenDropdownList] = useState(false);
-  const [nameOption, setnameOption] = useState<string | null>(null);
+
+  const [nameOption, setnameOption] = useState<string | null>(
+    getNameFromLocalStorageOption()
+  );
 
   const handleOpenDropdown = () => {
     setOpenDropdownList(!openDropdownList);
   };
+
+  function getNameFromLocalStorageOption() {
+    if (options && optionSelected) {
+      const optionToFind = options.find(
+        (option: AppComponents.FilterOption) => option.option === optionSelected
+      );
+      if (optionToFind) {
+        return optionToFind.name;
+      }
+    }
+    return "";
+  }
 
   const closeDropdown = () => {
     setOpenDropdownList(false);
@@ -29,6 +45,7 @@ function Dropdown({
 
   const handleSelectOption = (option: string, name: string | null) => {
     setOption(option);
+    saveInLocalStorage(option);
     setnameOption(name);
     closeDropdown();
   };

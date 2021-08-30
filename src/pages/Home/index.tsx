@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Dropdown from "../../components/Dropdown";
 import Articles from "../../components/Articles";
 
@@ -6,6 +6,9 @@ import angularIcon from "../../assets/img/angular-icon.png";
 import reactIcon from "../../assets/img/react-icon.png";
 import vueIcon from "../../assets/img/vue-icon.png";
 import allTechnologiesIcon from "../../assets/img/all-technologies.png";
+
+import useLocalStorage from "../../hooks/useLocalStorage";
+import { DROPDOWN_FILTER } from "../../constants";
 
 const FILTER_OPTIONS: Array<AppComponents.FilterOption> = [
   {
@@ -34,7 +37,12 @@ const defaultOp: AppComponents.FilterOption = {
 const dropDownTitle = "Select your news";
 
 function Home() {
-  const [optionSelected, setOptionSelected] = useState<string>("");
+  const [filterInLocalStorage, setFilterInLocalStorage] = useLocalStorage(
+    DROPDOWN_FILTER,
+    ""
+  );
+  const [optionSelected, setOptionSelected] =
+    useState<string>(filterInLocalStorage);
 
   return (
     <div>
@@ -44,6 +52,7 @@ function Home() {
         options={FILTER_OPTIONS}
         setOption={setOptionSelected}
         optionSelected={optionSelected}
+        saveInLocalStorage={setFilterInLocalStorage}
       />
       <Articles filter={optionSelected} />
     </div>

@@ -5,7 +5,8 @@ declare namespace AppComponents {
     defaultOption: FilterOption;
     titleOnDropdown: string;
     options: Array<FilterOption>;
-    setOption: (option: Option) => void;
     optionSelected: Option;
+    setOption: (option: Option) => void;
+    saveInLocalStorage: (option: Option) => void;
   }
 }
