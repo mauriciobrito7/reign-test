@@ -31,6 +31,7 @@ function Articles({
       nextPage();
       console.log("Fetch new articles");
     }
+    // eslint-disable-next-line
   }, [isBottomVisible]);
 
   const verifyArticles = () => articles && articles.length > 0;

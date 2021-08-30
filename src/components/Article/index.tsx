@@ -9,6 +9,7 @@ import {
 } from "./Article.styles";
 import { ReactComponent as HeartIcon } from "../../assets/img/heart.svg";
 import { ReactComponent as HeartOutlineIcon } from "../../assets/img/heart-no-fill.svg";
+import useTimeAgo from "../../hooks/useTimeAgo";
 
 function Article({
   title,
@@ -19,6 +20,7 @@ function Article({
   liked,
   setLiked,
 }: AppComponents.ArticleProps) {
+  const timeAgo = useTimeAgo(date);
   return (
     <ArticleContainer>
       <a target="_blank" rel="noreferrer" href={url}>
@@ -26,7 +28,7 @@ function Article({
           <ArticleInfo>
             <ArticleCaption>
               <TimeIcon />
-              {date} by {author}
+              {timeAgo} by {author}
             </ArticleCaption>
             <ArticleTitle>{title}</ArticleTitle>
           </ArticleInfo>

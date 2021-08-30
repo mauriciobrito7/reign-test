@@ -32,6 +32,7 @@ export default function useNearScreen(ref: MutableRefObject<Element | null>, opt
     return () => {
       cleanOb()
     }
+    // eslint-disable-next-line
   }, [element, options])
 
 
