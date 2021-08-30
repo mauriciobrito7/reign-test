@@ -1,11 +1,11 @@
-import Article from "../../components/Article";
 import Dropdown from "../../components/Dropdown";
+import Articles from "../../components/Articles";
 
 function Home() {
   return (
     <div>
       <Dropdown />
-      <Article />
+      <Articles />
     </div>
   );
 }
