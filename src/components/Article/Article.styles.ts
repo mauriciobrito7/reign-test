@@ -5,7 +5,7 @@ import { device } from '../../styles/utils';
 
 const WIDTH_REACTION_SECTION = '68px'
 
-export const ArticleContainer = styled.article`
+export const ArticleContainer = styled.div`
   border:1px solid ${colors.border};
   border-radius: 6px;
   width: 100%;

@@ -10,7 +10,7 @@ function Articles({
   renderOnlyFavs,
   filter = "",
 }: AppComponents.ArticlesProps) {
-  const [articles, isLoading] = useArticles(filter);
+  const [articles, isLoading] = useArticles(filter, renderOnlyFavs);
   const [valuesInLocalStorage, setValuesInLocalStorage] = useLocalStorage(
     FAV_ARTICLES,
     []
@@ -43,19 +43,18 @@ function Articles({
     <ArticlesContainer>
       {renderOnlyFavs ? (
         <>
-          {verifyArticles() &&
-            valuesInLocalStorage.map((articleFav: ArticleProps) => (
-              <Article
-                key={articleFav.id}
-                title={articleFav.title}
-                author={articleFav.author}
-                url={articleFav.url}
-                date={articleFav.date}
-                id={articleFav.id}
-                liked={checkArticleLiked(articleFav.id)}
-                setLiked={setLiked}
-              />
-            ))}
+          {valuesInLocalStorage.map((articleFav: ArticleProps) => (
+            <Article
+              key={articleFav.id}
+              title={articleFav.title}
+              author={articleFav.author}
+              url={articleFav.url}
+              date={articleFav.date}
+              id={articleFav.id}
+              liked={checkArticleLiked(articleFav.id)}
+              setLiked={setLiked}
+            />
+          ))}
         </>
       ) : (
         <>

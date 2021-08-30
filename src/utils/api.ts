@@ -14,9 +14,9 @@ const mapHitsToArticles = (data: any) => {
   }
 }
 
-export const fetchArticles = async (query = '', page = DEFAULT_PAGE, numOfArticlesPerPage = NUM_OF_ARTICLES_PER_PAGE) => {
+export const fetchArticles = async (query = '', signal: any, page = DEFAULT_PAGE, numOfArticlesPerPage = NUM_OF_ARTICLES_PER_PAGE) => {
   try {
-    const response = await fetch(apiUrl(query, page, numOfArticlesPerPage));
+    const response = await fetch(apiUrl(query, page, numOfArticlesPerPage), { signal });
     if (!response.ok) throw new Error(await response.text());
     const data = await response.json();
     const hits = await data.hits;
