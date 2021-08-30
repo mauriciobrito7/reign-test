@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Dropdown from "../../components/Dropdown";
 import Articles from "../../components/Articles";
 
