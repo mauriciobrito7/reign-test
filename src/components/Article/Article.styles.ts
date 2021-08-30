@@ -5,7 +5,7 @@ import { device } from '../../styles/utils';
 
 const WIDTH_REACTION_SECTION = '68px'
 
-export const ArticleContainer = styled.article`
+export const ArticleContainer = styled.div`
   border:1px solid ${colors.border};
   border-radius: 6px;
   width: 100%;
@@ -30,7 +30,7 @@ export const ArticleContainer = styled.article`
 
 export const ArticleContent = styled.div`
   padding: 1em 1.25em;
-  width: calc(100% - ${WIDTH_REACTION_SECTION});
+  width: 100%;
   display: flex;
   align-items: center;
 `

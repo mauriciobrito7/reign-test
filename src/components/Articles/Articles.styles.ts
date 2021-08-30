@@ -7,3 +7,10 @@ export const ArticlesContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
 `
+
+export const Bottom = styled.div`
+   width: 100%; 
+   height: 20px;
+   background: blue;
+   border:1px solid red dashed;
+`
