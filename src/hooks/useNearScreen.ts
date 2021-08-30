@@ -1,21 +1,39 @@
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef, useEffect, MutableRefObject } from "react";
 
-export function useNearScreen() {
-  const [loadMore, setLoadMore] = useState(false);
-  const element = useRef<any>(null);
+export default function useNearScreen(ref: MutableRefObject<Element | null>, options: IntersectionObserverInit = {}, forward: boolean = true) {
+  const [element, setElement] = useState<Element | null>(null);
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const observer = useRef<null | IntersectionObserver>(null);
+
+  const cleanOb = () => {
+    if (observer.current) {
+      observer.current.disconnect()
+    }
+  }
 
   useEffect(() => {
-    const observer = new window.IntersectionObserver((entries) => {
-      const { isIntersecting } = entries[0];
-      if (isIntersecting) {
-        setLoadMore(true);
-        observer.disconnect();
-      }
-      if (null !== element.current && undefined !== element.current) {
-        observer.observe(element.current);
-      }
-    });
-  }, [element]);
+    setElement(ref.current);
+  }, [ref]);
 
-  return [loadMore, element];
+  useEffect(() => {
+    if (!element) return;
+    cleanOb()
+    const ob = observer.current = new IntersectionObserver(([entry]) => {
+      const isElementIntersecting = entry.isIntersecting;
+      console.log(isIntersecting)
+      if (!forward) {
+        setIsIntersecting(isElementIntersecting)
+      } else if (forward && !isIntersecting && isElementIntersecting) {
+        setIsIntersecting(isElementIntersecting);
+        cleanOb()
+      };
+    }, { ...options })
+    ob.observe(element);
+    return () => {
+      cleanOb()
+    }
+  }, [element, options])
+
+
+  return isIntersecting;
 }
