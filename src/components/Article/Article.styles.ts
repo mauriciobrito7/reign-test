@@ -18,6 +18,7 @@ export const ArticleContainer = styled.article`
     color:${colors.blackParagraph};
     width: 100%;
     height: 100%;
+    display:flex;
   }
   &:hover {
     opacity: 40%;
