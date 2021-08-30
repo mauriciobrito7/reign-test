@@ -5,7 +5,8 @@ declare namespace AppComponents {
   }
 
   interface DropdownProps {
-    defaultOption: FilterOption;
-    titleOnDropdown: string;
+    defaultOption?: FilterOption;
+    titleOnDropdown?: string;
+    options?: Array<FilterOption>
   }
 }
