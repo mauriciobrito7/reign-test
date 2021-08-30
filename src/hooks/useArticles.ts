@@ -17,6 +17,7 @@ export default function useArticles(filter: string) {
   useEffect(() => {
     setIsLoading(true);
     getArticles();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
 
   return [articles, isLoading];
