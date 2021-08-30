@@ -30,7 +30,7 @@ export const ArticleContainer = styled.div`
 
 export const ArticleContent = styled.div`
   padding: 1em 1.25em;
-  width: calc(100% - ${WIDTH_REACTION_SECTION});
+  width: 100%;
   display: flex;
   align-items: center;
 `
