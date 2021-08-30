@@ -4,6 +4,7 @@ import Layout from "./components/Layout";
 import ScrollToTop from "./components/ScrollToTop";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PUBLIC_URL } from "./constants";
+import Loader from "./components/Loader";
 
 const Home = React.lazy(() => import("./pages/Home"));
 const Favs = React.lazy(() => import("./pages/Favs"));
@@ -15,7 +16,7 @@ function App() {
       <Router>
         <ScrollToTop />
         <Layout>
-          <Suspense fallback="Loading...">
+          <Suspense fallback={<Loader />}>
             <Switch>
               <Route exact path={PUBLIC_URL.home}>
                 <Home />
