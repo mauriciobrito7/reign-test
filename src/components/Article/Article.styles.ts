@@ -14,6 +14,11 @@ export const ArticleContainer = styled.article`
   display: flex;
   cursor: pointer;
   transition: opacity .3s ease;
+  a{
+    color:${colors.blackParagraph};
+    width: 100%;
+    height: 100%;
+  }
   &:hover {
     opacity: 40%;
   }
@@ -27,10 +32,6 @@ export const ArticleContent = styled.div`
   width: calc(100% - ${WIDTH_REACTION_SECTION});
   display: flex;
   align-items: center;
-
-  a{
-    color:${colors.blackParagraph}
-  }
 `
 
 export const ArticleInfo = styled.div`

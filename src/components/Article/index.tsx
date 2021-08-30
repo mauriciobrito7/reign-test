@@ -21,8 +21,8 @@ function Article({
 }: AppComponents.ArticleProps) {
   return (
     <ArticleContainer>
-      <ArticleContent>
-        <a target="_blank" href={url}>
+      <a target="_blank" href={url}>
+        <ArticleContent>
           <ArticleInfo>
             <ArticleCaption>
               <TimeIcon />
@@ -30,8 +30,8 @@ function Article({
             </ArticleCaption>
             <ArticleTitle>{title}</ArticleTitle>
           </ArticleInfo>
-        </a>
-      </ArticleContent>
+        </ArticleContent>
+      </a>
       <ArticleReaction
         onClick={() => setLiked({ title, id, author, url, date })}
       >
