@@ -11,13 +11,13 @@ export default function useArticles(filter: string) {
     } catch (error) {
       console.log(`Error ${error}`);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
     setIsLoading(true);
     getArticles();
-    setIsLoading(false);
-  }, [filter, getArticles]);
+  }, [filter]);
 
   return [articles, isLoading];
 };

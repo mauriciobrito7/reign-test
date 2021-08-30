@@ -4,6 +4,7 @@ import { ArticlesContainer } from "./Articles.styles";
 import { ArticleProps } from "../../types/article";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { FAV_ARTICLES } from "../../constants/";
+import Skeleton from "../Skeleton";
 
 function Articles({
   renderOnlyFavs,
@@ -34,46 +35,44 @@ function Articles({
     }
   };
 
+  if (isLoading) {
+    return <Skeleton numberOfShapes={20} />;
+  }
+
   return (
     <ArticlesContainer>
-      {!isLoading ? (
+      {renderOnlyFavs ? (
         <>
-          {renderOnlyFavs ? (
-            <>
-              {verifyArticles() &&
-                valuesInLocalStorage.map((articleFav: ArticleProps) => (
-                  <Article
-                    key={articleFav.id}
-                    title={articleFav.title}
-                    author={articleFav.author}
-                    url={articleFav.url}
-                    date={articleFav.date}
-                    id={articleFav.id}
-                    liked={checkArticleLiked(articleFav.id)}
-                    setLiked={setLiked}
-                  />
-                ))}
-            </>
-          ) : (
-            <>
-              {verifyArticles() &&
-                articles.map((article: ArticleProps) => (
-                  <Article
-                    key={article.id}
-                    title={article.title}
-                    author={article.author}
-                    url={article.url}
-                    date={article.date}
-                    id={article.id}
-                    liked={checkArticleLiked(article.id)}
-                    setLiked={setLiked}
-                  />
-                ))}
-            </>
-          )}
+          {verifyArticles() &&
+            valuesInLocalStorage.map((articleFav: ArticleProps) => (
+              <Article
+                key={articleFav.id}
+                title={articleFav.title}
+                author={articleFav.author}
+                url={articleFav.url}
+                date={articleFav.date}
+                id={articleFav.id}
+                liked={checkArticleLiked(articleFav.id)}
+                setLiked={setLiked}
+              />
+            ))}
         </>
       ) : (
-        "Loading..."
+        <>
+          {verifyArticles() &&
+            articles.map((article: ArticleProps) => (
+              <Article
+                key={article.id}
+                title={article.title}
+                author={article.author}
+                url={article.url}
+                date={article.date}
+                id={article.id}
+                liked={checkArticleLiked(article.id)}
+                setLiked={setLiked}
+              />
+            ))}
+        </>
       )}
     </ArticlesContainer>
   );
