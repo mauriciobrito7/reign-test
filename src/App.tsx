@@ -5,6 +5,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PUBLIC_URL } from "./constants";
 import Loader from "./components/Loader";
+import NotFound from "./pages/NotFound";
 
 const Home = React.lazy(() => import("./pages/Home"));
 const Favs = React.lazy(() => import("./pages/Favs"));
@@ -23,6 +24,9 @@ function App() {
               </Route>
               <Route exact path={PUBLIC_URL.favs}>
                 <Favs />
+              </Route>
+              <Route>
+                <NotFound />
               </Route>
             </Switch>
           </Suspense>
