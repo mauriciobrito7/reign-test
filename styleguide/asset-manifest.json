@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.js": "/build/main.454179f0.js",
+    "runtime-main.js": "/build/bundle.fae3d031.js",
+    "build/2.e4d27ae6.js": "/build/2.e4d27ae6.js",
+    "build/2.e4d27ae6.js.LICENSE.txt": "/build/2.e4d27ae6.js.LICENSE.txt",
+    "index.html": "/index.html",
+    "static/media/down-arrow.600ee40a.svg": "/static/media/down-arrow.600ee40a.svg",
+    "static/media/heart-no-fill.21526bc7.svg": "/static/media/heart-no-fill.21526bc7.svg",
+    "static/media/heart.ad9d4f4f.svg": "/static/media/heart.ad9d4f4f.svg",
+    "static/media/time.a3477b73.svg": "/static/media/time.a3477b73.svg"
+  },
+  "entrypoints": [
+    "build/bundle.fae3d031.js",
+    "build/2.e4d27ae6.js",
+    "build/main.454179f0.js"
+  ]
+}

@@ -6,7 +6,7 @@
 
 ---
 
-### Tabla de contenido
+### Content Table
 
 - [Description](#description)
 - [How to install](#how-to-install)
@@ -39,6 +39,14 @@ Get and filter news from Hackers News public API. Save your favorites articles a
 ### Run Project
 
 `npm run start`
+
+### Run Documentation
+
+`npm run documentation`
+
+### Go to the server
+
+`http://localhost:6060/`
 
 [Back To The Top](#reign-technical-test)
 
