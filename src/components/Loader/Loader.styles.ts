@@ -18,10 +18,10 @@ export const LoaderContainer = styled.div`
   border-bottom: 2px solid ${colors.primary};
   border-left: 4px solid ${colors.primary};
   background: transparent;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  position: absolute;
+  position: ${(props: AppComponents.LoaderProps) => props.position ? props.position : 'absolute'};
   top: calc(50% - 24px);
   left: calc(50% - 12px)
 `;
