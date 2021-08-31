@@ -18,13 +18,13 @@ export const SkeletonShape = styled.div`
   animation: pulse 1s infinite ease-in-out;
     @keyframes pulse {
         0% {
-          background: ${addOpacityToColor('#F5F5F5', 0.6)};
+          background: ${addOpacityToColor('#F5F5F5', 0.7)};
         }
         50% {
-          background: ${addOpacityToColor('#F5F5F5', 0.8)};
+          background: ${addOpacityToColor('#F5F5F5', 0.9)};
         }
         100% {
-          background: ${addOpacityToColor('#F5F5F5', 0.6)};
+          background: ${addOpacityToColor('#F5F5F5', 0.7)};
         }
     }
 

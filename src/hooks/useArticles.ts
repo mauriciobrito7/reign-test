@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { fetchArticles } from '../utils/api';
-import { ArticleProps } from '../types/article'
+import { ArticleProps } from '../types/article';
+
+const NUM_OF_ARTICLES_PER_PAGE = 20;
+const DEFAULT_PAGE = 0;
+const DEFAULT_QUERY = '';
 
 export default function useArticles(filter: string, getFromLocalStorage = false) {
 
@@ -13,12 +17,21 @@ export default function useArticles(filter: string, getFromLocalStorage = false)
 
   const getArticles = async () => {
     try {
-      await fetchArticles(filter, signal, page).then((data) => setArticles(data));
+      await fetchArticles(signal, DEFAULT_QUERY, page, NUM_OF_ARTICLES_PER_PAGE).then((data) => setArticles([...articles, ...data]));
     } catch (error) {
       console.log(`Error ${error}`);
     }
     setIsLoading(false);
   };
+
+  const getArticleByFilter = async () => {
+    try {
+      await fetchArticles(signal, filter, DEFAULT_PAGE, NUM_OF_ARTICLES_PER_PAGE).then((data) => setArticles(data));
+    } catch (error) {
+      console.log(`Error ${error}`);
+    }
+    setIsLoading(false);
+  }
 
   const nextPage = () => {
     const newPage = page + 1;
@@ -34,7 +47,18 @@ export default function useArticles(filter: string, getFromLocalStorage = false)
       controller.abort();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filter, page]);
+  }, [page]);
+
+  useEffect(() => {
+    if (!getFromLocalStorage) {
+      setIsLoading(true);
+      getArticleByFilter()
+    }
+    return () => {
+      controller.abort();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter])
 
   return { articles, isLoading, nextPage };
 };
