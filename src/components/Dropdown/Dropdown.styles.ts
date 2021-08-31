@@ -68,4 +68,8 @@ export const DropdownImgWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-right: 1em;
+
+  img {
+    width: 100%;
+  }
 `

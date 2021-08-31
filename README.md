@@ -40,11 +40,15 @@ Get and filter news from Hackers News public API. Save your favorites articles a
 
 `npm run start`
 
+### Go to the server of the project
+
+`http://localhost:3000/`
+
 ### Run Documentation
 
 `npm run documentation`
 
-### Go to the server
+### Go to the server of documentation
 
 `http://localhost:6060/`
 

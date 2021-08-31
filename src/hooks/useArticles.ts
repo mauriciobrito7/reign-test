@@ -33,7 +33,7 @@ export default function useArticles(filter: string, getFromLocalStorage = false)
     setIsLoading(false);
   }
 
-  const nextPage = () => {
+  const loadMore = () => {
     const newPage = page + 1;
     setPage(newPage);
   }
@@ -60,5 +60,5 @@ export default function useArticles(filter: string, getFromLocalStorage = false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter])
 
-  return { articles, isLoading, nextPage };
+  return { articles, isLoading, loadMore };
 };

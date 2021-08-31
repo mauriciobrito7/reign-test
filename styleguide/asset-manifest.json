@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.js": "/build/main.454179f0.js",
+    "main.js": "/build/main.d1613ec5.js",
     "runtime-main.js": "/build/bundle.fae3d031.js",
-    "build/2.e4d27ae6.js": "/build/2.e4d27ae6.js",
-    "build/2.e4d27ae6.js.LICENSE.txt": "/build/2.e4d27ae6.js.LICENSE.txt",
+    "build/2.b71ae0f6.js": "/build/2.b71ae0f6.js",
+    "build/2.b71ae0f6.js.LICENSE.txt": "/build/2.b71ae0f6.js.LICENSE.txt",
     "index.html": "/index.html",
     "static/media/down-arrow.600ee40a.svg": "/static/media/down-arrow.600ee40a.svg",
     "static/media/heart-no-fill.21526bc7.svg": "/static/media/heart-no-fill.21526bc7.svg",
@@ -12,7 +12,7 @@
   },
   "entrypoints": [
     "build/bundle.fae3d031.js",
-    "build/2.e4d27ae6.js",
-    "build/main.454179f0.js"
+    "build/2.b71ae0f6.js",
+    "build/main.d1613ec5.js"
   ]
 }
