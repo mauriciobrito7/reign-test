@@ -1,0 +1,6 @@
+Header example:
+
+```js
+<Header />
+
+```
