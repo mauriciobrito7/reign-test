@@ -1,12 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import useArticles from "../../hooks/useArticles";
 import Article from "../Article";
-import { ArticlesContainer, Bottom } from "./Articles.styles";
+import { ArticlesContainer, EmptyData, Bottom } from "./Articles.styles";
 import { ArticleProps } from "../../types/article";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { FAV_ARTICLES } from "../../constants/";
 import Skeleton from "../Skeleton";
-import useNearScreen from "../../hooks/useNearScreen";
+import Loader from "../Loader";
+import { useInView } from "react-intersection-observer";
 
 function Articles({
   renderOnlyFavs,
@@ -17,22 +18,14 @@ function Articles({
     FAV_ARTICLES,
     []
   );
-  const ref = useRef(null);
-  const isBottomVisible = useNearScreen(
-    ref,
-    {
-      threshold: 0,
-    },
-    false
-  );
+  const { ref, inView } = useInView();
 
   useEffect(() => {
-    if (isBottomVisible) {
+    if (inView) {
       nextPage();
-      console.log("Fetch new articles");
     }
     // eslint-disable-next-line
-  }, [isBottomVisible]);
+  }, [inView]);
 
   const verifyArticles = () => articles && articles.length > 0;
 
@@ -53,10 +46,18 @@ function Articles({
     }
   };
 
-  if (isLoading) {
+  if (isLoading && articles.length === 0) {
     return <Skeleton numberOfShapes={20} />;
   }
+
   if (renderOnlyFavs) {
+    if (!isLoading && valuesInLocalStorage.length === 0) {
+      return (
+        <EmptyData>
+          <h2>There isn't any article to show</h2>
+        </EmptyData>
+      );
+    }
     return (
       <ArticlesContainer>
         <>
@@ -72,7 +73,6 @@ function Articles({
               setLiked={setLiked}
             />
           ))}
-          <Bottom ref={ref} />
         </>
       </ArticlesContainer>
     );
@@ -94,8 +94,9 @@ function Articles({
               setLiked={setLiked}
             />
           ))}
-        <Bottom ref={ref} />
       </>
+      <Bottom ref={ref} />
+      {isLoading && articles.length > 0 && <Loader position="relative" />}
     </ArticlesContainer>
   );
 }

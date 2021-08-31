@@ -1,5 +1,3 @@
-const NUM_OF_ARTICLES_PER_PAGE = 20;
-const DEFAULT_PAGE = 0;
 const apiUrl = (query: string, page: number, numOfArticlesPerPage: number) => `https://hn.algolia.com/api/v1/search_by_date?query=${query}&page=${page}&hitsPerPage=${numOfArticlesPerPage}`
 
 const mapHitsToArticles = (data: any) => {
@@ -14,7 +12,7 @@ const mapHitsToArticles = (data: any) => {
   }
 }
 
-export const fetchArticles = async (query = '', signal: any, page = DEFAULT_PAGE, numOfArticlesPerPage = NUM_OF_ARTICLES_PER_PAGE) => {
+export const fetchArticles = async (signal: any, query: string, page: number, numOfArticlesPerPage: number) => {
   try {
     const response = await fetch(apiUrl(query, page, numOfArticlesPerPage), { signal });
     if (!response.ok) throw new Error(await response.text());
