@@ -14,7 +14,7 @@ function Nav() {
           <NavItem active={pathname === PUBLIC_URL.home}>All</NavItem>
         </Link>
         <Link to={PUBLIC_URL.favs}>
-          <NavItem active={pathname === PUBLIC_URL.favs}>My Faves</NavItem>
+          <NavItem active={pathname === PUBLIC_URL.favs}>My favs</NavItem>
         </Link>
       </NavList>
     </NavContainer>
