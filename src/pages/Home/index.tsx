@@ -8,7 +8,8 @@ import vueIcon from "../../assets/img/vue-icon.png";
 import allTechnologiesIcon from "../../assets/img/all-technologies.png";
 
 import useLocalStorage from "../../hooks/useLocalStorage";
-import { DROPDOWN_FILTER } from "../../constants";
+import useArticles from "../../hooks/useArticles";
+import { DROPDOWN_FILTER, FAV_ARTICLES } from "../../constants";
 
 const FILTER_OPTIONS: Array<AppComponents.FilterOption> = [
   {
@@ -41,8 +42,10 @@ function Home() {
     DROPDOWN_FILTER,
     ""
   );
-  const [optionSelected, setOptionSelected] =
-    useState<string>(filterInLocalStorage);
+  const [filter, setFilter] = useState<string>(filterInLocalStorage);
+  const renderOnlyFavs = false;
+  const [favArticles, setFavArticles] = useLocalStorage(FAV_ARTICLES, []);
+  const { articles, isLoading, loadMore } = useArticles(filter, renderOnlyFavs);
 
   return (
     <div>
@@ -50,11 +53,18 @@ function Home() {
         titleOnDropdown={dropDownTitle}
         defaultOption={defaultOp}
         options={FILTER_OPTIONS}
-        setOption={setOptionSelected}
-        optionSelected={optionSelected}
+        setOption={setFilter}
+        optionSelected={filter}
         saveInLocalStorage={setFilterInLocalStorage}
       />
-      <Articles filter={optionSelected} />
+      <Articles
+        articles={articles}
+        favArticles={favArticles}
+        setFavArticles={setFavArticles}
+        isLoading={isLoading}
+        loadMore={loadMore}
+        renderOnlyFavs={renderOnlyFavs}
+      />
     </div>
   );
 }

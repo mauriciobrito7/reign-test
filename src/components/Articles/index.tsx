@@ -1,28 +1,24 @@
 import { useEffect } from "react";
-import useArticles from "../../hooks/useArticles";
 import Article from "../Article";
 import { ArticlesContainer, EmptyData, Bottom } from "./Articles.styles";
 import { ArticleProps } from "../../types/article";
-import useLocalStorage from "../../hooks/useLocalStorage";
-import { FAV_ARTICLES } from "../../constants/";
 import Skeleton from "../Skeleton";
 import Loader from "../Loader";
 import { useInView } from "react-intersection-observer";
 
 function Articles({
+  articles,
+  favArticles,
+  setFavArticles,
+  isLoading,
+  loadMore,
   renderOnlyFavs,
-  filter = "",
 }: AppComponents.ArticlesProps) {
-  const { articles, isLoading, nextPage } = useArticles(filter, renderOnlyFavs);
-  const [valuesInLocalStorage, setValuesInLocalStorage] = useLocalStorage(
-    FAV_ARTICLES,
-    []
-  );
   const { ref, inView } = useInView();
 
   useEffect(() => {
-    if (inView) {
-      nextPage();
+    if (inView && loadMore) {
+      loadMore();
     }
     // eslint-disable-next-line
   }, [inView]);
@@ -30,28 +26,28 @@ function Articles({
   const verifyArticles = () => articles && articles.length > 0;
 
   const checkArticleLiked = (id: string): boolean =>
-    valuesInLocalStorage.some((article: ArticleProps) => article.id === id);
+    favArticles.some((article: ArticleProps) => article.id === id);
 
   const hasArticleAlreadyLiked = (articles: Array<ArticleProps>, id: string) =>
     articles.some((article: ArticleProps) => article.id === id);
 
   const setLiked = (articleToLike: ArticleProps) => {
-    if (hasArticleAlreadyLiked(valuesInLocalStorage, articleToLike.id)) {
-      const likeToDelete = valuesInLocalStorage.filter(
+    if (hasArticleAlreadyLiked(favArticles, articleToLike.id)) {
+      const likeToDelete = favArticles.filter(
         (article: ArticleProps) => article.id !== articleToLike.id
       );
-      setValuesInLocalStorage(likeToDelete);
+      setFavArticles(likeToDelete);
     } else {
-      setValuesInLocalStorage([articleToLike, ...valuesInLocalStorage]);
+      setFavArticles([articleToLike, ...favArticles]);
     }
   };
 
-  if (isLoading && articles.length === 0) {
+  if (isLoading && articles?.length === 0) {
     return <Skeleton numberOfShapes={20} />;
   }
 
   if (renderOnlyFavs) {
-    if (!isLoading && valuesInLocalStorage.length === 0) {
+    if (!isLoading && favArticles && favArticles.length === 0) {
       return (
         <EmptyData>
           <h2>There isn't any article to show</h2>
@@ -61,7 +57,7 @@ function Articles({
     return (
       <ArticlesContainer>
         <>
-          {valuesInLocalStorage.map((articleFav: ArticleProps) => (
+          {favArticles.map((articleFav: ArticleProps) => (
             <Article
               key={articleFav.id}
               title={articleFav.title}
@@ -82,7 +78,7 @@ function Articles({
     <ArticlesContainer>
       <>
         {verifyArticles() &&
-          articles.map((article: ArticleProps) => (
+          articles?.map((article: ArticleProps) => (
             <Article
               key={article.id}
               title={article.title}
@@ -96,7 +92,9 @@ function Articles({
           ))}
       </>
       <Bottom ref={ref} />
-      {isLoading && articles.length > 0 && <Loader position="relative" />}
+      {isLoading && articles && articles.length > 0 && (
+        <Loader position="relative" />
+      )}
     </ArticlesContainer>
   );
 }
