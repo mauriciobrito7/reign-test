@@ -15,16 +15,16 @@ export default function useArticles(filter: string, getFromLocalStorage = false)
   const { signal } = controller;
 
 
-  const getArticles = async () => {
+  const getArticles = async (filter: string = DEFAULT_QUERY) => {
     try {
-      await fetchArticles(signal, DEFAULT_QUERY, page, NUM_OF_ARTICLES_PER_PAGE).then((data) => setArticles([...articles, ...data]));
+      await fetchArticles(signal, filter, page, NUM_OF_ARTICLES_PER_PAGE).then((data) => setArticles([...articles, ...data]));
     } catch (error) {
       console.log(`Error ${error}`);
     }
     setIsLoading(false);
   };
 
-  const getArticleByFilter = async () => {
+  const getArticlesWhenFilterChanges = async () => {
     try {
       await fetchArticles(signal, filter, DEFAULT_PAGE, NUM_OF_ARTICLES_PER_PAGE).then((data) => setArticles(data));
     } catch (error) {
@@ -41,7 +41,7 @@ export default function useArticles(filter: string, getFromLocalStorage = false)
   useEffect(() => {
     if (!getFromLocalStorage) {
       setIsLoading(true);
-      getArticles();
+      getArticles(filter);
     }
     return () => {
       controller.abort();
@@ -52,7 +52,9 @@ export default function useArticles(filter: string, getFromLocalStorage = false)
   useEffect(() => {
     if (!getFromLocalStorage) {
       setIsLoading(true);
-      getArticleByFilter()
+      setPage(0);
+      setArticles([]);
+      getArticlesWhenFilterChanges();
     }
     return () => {
       controller.abort();
