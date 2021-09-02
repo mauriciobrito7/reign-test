@@ -39,7 +39,7 @@ export default function useArticles(filter: string, getFromLocalStorage = false)
   }
 
   useEffect(() => {
-    if (!getFromLocalStorage) {
+    if (!getFromLocalStorage && page > 0) {
       setIsLoading(true);
       getArticles(filter);
     }

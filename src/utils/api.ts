@@ -20,7 +20,8 @@ export const fetchArticles = async (signal: any, query: string, page: number, nu
     if (!response.ok) throw new Error(await response.text());
     const data = await response.json();
     const hits = await data.hits;
-    const articles = hits.map(mapHitsToArticles)
+    const articles = hits.map(mapHitsToArticles);
+    console.log(articles);
     const filteredArticles = articles.filter(filterArticles);
     return filteredArticles;
   } catch (error) {
